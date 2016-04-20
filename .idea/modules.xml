@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/AnterosAndroid.iml" filepath="$PROJECT_DIR$/AnterosAndroid.iml" />
+      <module fileurl="file://$PROJECT_DIR$/anteros-core-android/anteros-core-android.iml" filepath="$PROJECT_DIR$/anteros-core-android/anteros-core-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/anteros-hardware-android/anteros-hardware-android.iml" filepath="$PROJECT_DIR$/anteros-hardware-android/anteros-hardware-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/anteros-installer-android/anteros-installer-android.iml" filepath="$PROJECT_DIR$/anteros-installer-android/anteros-installer-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/anteros-persistence-android/anteros-persistence-android.iml" filepath="$PROJECT_DIR$/anteros-persistence-android/anteros-persistence-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/anteros-security-android/anteros-security-android.iml" filepath="$PROJECT_DIR$/anteros-security-android/anteros-security-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/anteros-spring-android/anteros-spring-android.iml" filepath="$PROJECT_DIR$/anteros-spring-android/anteros-spring-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/anteros-synchronism-android/anteros-synchronism-android.iml" filepath="$PROJECT_DIR$/anteros-synchronism-android/anteros-synchronism-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/anteros-ui-controls-android/anteros-ui-controls-android.iml" filepath="$PROJECT_DIR$/anteros-ui-controls-android/anteros-ui-controls-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/anteros-core-android/app.iml" filepath="$PROJECT_DIR$/anteros-core-android/app.iml" />
+    </modules>
+  </component>
+</project>

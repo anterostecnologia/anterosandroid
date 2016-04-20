@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical">
+
+	<LinearLayout android:id="@+id/linearLayout1"
+		android:layout_height="fill_parent" android:layout_width="fill_parent"
+		android:orientation="horizontal" android:layout_weight="5">
+
+		<ImageView android:layout_height="wrap_content" android:layout_width="wrap_content"
+			android:src="@drawable/save_white" android:padding="10dip"
+			android:layout_weight="1" android:id="@+id/imgSavePicture"></ImageView>
+		<ImageView android:layout_height="wrap_content" android:layout_width="wrap_content"
+			android:src="@drawable/camera_white" android:padding="10dip"
+			android:layout_weight="1" android:id="@+id/imgTakePicture"></ImageView>
+		<ImageView android:id="@+id/imgCancelPicture"
+			android:layout_height="wrap_content" android:layout_width="wrap_content"
+			android:src="@drawable/cancel_white" android:padding="5dip"
+			android:layout_weight="1"></ImageView>
+		<ImageView android:id="@+id/imgExitPicture"
+			android:layout_height="wrap_content" android:layout_width="wrap_content"
+			android:src="@drawable/exit_white" android:padding="5dip"
+			android:layout_weight="1"></ImageView>
+	</LinearLayout>
+	<SurfaceView android:id="@+id/surface_camera"
+		android:layout_width="fill_parent" android:layout_height="fill_parent"
+		android:orientation="vertical" android:layout_weight="1">
+	</SurfaceView>
+
+</LinearLayout>
+

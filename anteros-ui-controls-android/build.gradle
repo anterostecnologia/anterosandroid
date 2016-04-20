@@ -1,0 +1,93 @@
+/*
+ * Copyright 2016 Anteros Tecnologia
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+apply plugin: 'com.android.library'
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'anteros-social-android-core'
+
+    publishedGroupId = 'br.com.anteros.social'
+    libraryName = 'anteros-social-android-core'
+    artifact = 'anteros-social-android-core'
+
+    libraryDescription = 'Anteros Social Android Core - Core framework para login social.'
+
+    siteUrl = 'http://www.anteros.com.br'
+    gitUrl = 'https://github.com/anterostecnologia/anterossocialandroid.git'
+
+    libraryVersion = '1.0.0'
+
+    developerId = 'edson'
+    developerName = 'Edson Martins'
+    developerEmail = 'edsonmartins2005@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.3.0'
+    compile 'br.com.anteros:Anteros-Core:1.0.0'
+    compile project(':anteros-core-android')
+    compile 'com.google.android.gms:play-services:8.4.0'
+    compile 'com.android.support:design:23.3.0'
+    compile 'com.android.support:recyclerview-v7:23.3.0'
+    compile files('libs/maps.jar')
+}
+
+
+apply from : '../install.gradle'
+/*
+ * ******************************************************************************
+ *  * Copyright 2016 Anteros Tecnologia
+ *  *
+ *  * Licensed under the Apache License, Version 2.0 (the "License");
+ *  * you may not use this file except in compliance with the License.
+ *  * You may obtain a copy of the License at
+ *  *
+ *  *   http://www.apache.org/licenses/LICENSE-2.0
+ *  *
+ *  * Unless required by applicable law or agreed to in writing, software
+ *  * distributed under the License is distributed on an "AS IS" BASIS,
+ *  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  * See the License for the specific language governing permissions and
+ *  * limitations under the License.
+ *  *****************************************************************************
+ */
+
+//apply from : '../bintray.gradle'

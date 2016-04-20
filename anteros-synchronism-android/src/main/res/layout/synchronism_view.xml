@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/syncronism_view_relativeLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <RelativeLayout
+        android:id="@+id/syncronism_view_linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical" >
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/syncronism_view_linearLayout2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/syncronism_view_linearLayout1"
+        android:layout_alignParentTop="true" >
+
+        <LinearLayout
+            android:id="@+id/syncronism_view_linearLayout22"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/syncronism_view_linearLayout1"
+            android:layout_alignParentTop="true"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/syncronism_view_lbTables"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tabela" />
+
+            <ProgressBar
+                android:id="@+id/syncronism_view_pb_tables"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:max="50"
+                android:maxHeight="20dip"
+                android:minHeight="20dip" />
+
+            <TextView
+                android:id="@+id/syncronism_view_lbActions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ações" />
+
+            <ProgressBar
+                android:id="@+id/syncronism_view_pb_actions"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:max="100" />
+
+            <TextView
+                android:id="@+id/syncronism_view_lb_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Status" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="" />
+
+            <ImageView
+                android:id="@+id/syncronism_view_anSyncronism"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/an_syncronism" />
+
+            <LinearLayout
+                android:id="@+id/syncronism_view_viewContent"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical" >
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/syncronism_view_toolBar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="false"
+        android:background="#3FA9F5"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/syncronism_view_img_synchronism"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/sel_synchronism" />
+
+        <ImageView
+            android:id="@+id/syncronism_view_img_interrupt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/sel_stop" />
+
+        <ImageView
+            android:id="@+id/syncronism_view_img_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/sel_details" />
+
+        <ImageView
+            android:id="@+id/syncronism_view_img_config"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/sel_config" />
+
+        <ImageView
+            android:id="@+id/syncronism_view_img_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/sel_cancel" />
+    </LinearLayout>
+
+</RelativeLayout>
