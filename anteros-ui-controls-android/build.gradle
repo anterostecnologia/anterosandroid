@@ -18,16 +18,16 @@ apply plugin: 'com.android.library'
 
 ext {
     bintrayRepo = 'maven'
-    bintrayName = 'anteros-social-android-core'
+    bintrayName = 'anteros-ui-controls-android'
 
-    publishedGroupId = 'br.com.anteros.social'
-    libraryName = 'anteros-social-android-core'
-    artifact = 'anteros-social-android-core'
+    publishedGroupId = 'br.com.anteros'
+    libraryName = 'anteros-ui-controls-android'
+    artifact = 'anteros-ui-controls-android'
 
-    libraryDescription = 'Anteros Social Android Core - Core framework para login social.'
+    libraryDescription = 'Anteros UI Controls Android.'
 
     siteUrl = 'http://www.anteros.com.br'
-    gitUrl = 'https://github.com/anterostecnologia/anterossocialandroid.git'
+    gitUrl = 'https://github.com/anterostecnologia/anterosandroid.git'
 
     libraryVersion = '1.0.0'
 
@@ -40,13 +40,14 @@ ext {
     allLicenses = ["Apache-2.0"]
 }
 
+
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    buildToolsVersion '23.0.3'
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 23
+        targetSdkVersion 21
         versionCode 1
         versionName "1.0"
     }
@@ -67,7 +68,8 @@ dependencies {
     compile 'com.google.android.gms:play-services:8.4.0'
     compile 'com.android.support:design:23.3.0'
     compile 'com.android.support:recyclerview-v7:23.3.0'
-    compile files('libs/maps.jar')
+    compile 'com.nineoldandroids:library:2.4.0'
+    compile 'com.android.support:support-annotations:23.3.0'
 }
 
 

@@ -36,6 +36,9 @@ allprojects {
         maven { url "https://jcenter.bintray.com" }
         jcenter()
     }
+    tasks.withType(Javadoc) {
+        options.addStringOption('Xdoclint:none', '-quiet')
+    }
 }
 
 task clean(type: Delete) {

@@ -18,16 +18,16 @@ apply plugin: 'com.android.library'
 
 ext {
     bintrayRepo = 'maven'
-    bintrayName = 'anteros-social-android-core'
+    bintrayName = 'anteros-hardware-android'
 
-    publishedGroupId = 'br.com.anteros.social'
-    libraryName = 'anteros-social-android-core'
-    artifact = 'anteros-social-android-core'
+    publishedGroupId = 'br.com.anteros'
+    libraryName = 'anteros-hardware-android'
+    artifact = 'anteros-hardware-android'
 
-    libraryDescription = 'Anteros Social Android Core - Core framework para login social.'
+    libraryDescription = 'Anteros Hardware Android.'
 
     siteUrl = 'http://www.anteros.com.br'
-    gitUrl = 'https://github.com/anterostecnologia/anterossocialandroid.git'
+    gitUrl = 'https://github.com/anterostecnologia/anterosandroid.git'
 
     libraryVersion = '1.0.0'
 
