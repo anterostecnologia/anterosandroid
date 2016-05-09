@@ -611,23 +611,23 @@ public class AndroidSQLSession implements SQLSession {
 
 	@Override
 	public SQLQuery createQuery(String sql, LockOptions lockOptions) throws Exception {
-		throw new SQLException("Método não suportado no Anteros Persistence para Android.");
+		return createQuery(sql);
 	}
 
 	@Override
 	public SQLQuery createQuery(String sql, Object parameters, LockOptions lockOptions) throws Exception {
-		throw new SQLException("Método não suportado no Anteros Persistence para Android.");
+		return createQuery(sql,parameters);
 	}
 
 	@Override
 	public <T> TypedSQLQuery<T> createQuery(String sql, Class<T> resultClass, LockOptions lockOptions) throws Exception {
-		throw new SQLException("Método não suportado no Anteros Persistence para Android.");
+		return createQuery(sql,resultClass);
 	}
 
 	@Override
 	public <T> TypedSQLQuery<T> createQuery(String sql, Class<T> resultClass, Object parameters, LockOptions lockOptions)
 			throws Exception {
-		throw new SQLException("Método não suportado no Anteros Persistence para Android.");
+		return createQuery(sql,resultClass,parameters);
 	}
 
 	@Override

@@ -255,4 +255,10 @@ public class AndroidSQLConfiguration extends AnterosPersistenceConfigurationBase
 
 		return this;
 	}
+
+	public AndroidSQLConfiguration setPackageToScanEntity(PackageScanEntity packageToScanEntity){
+		getSessionFactoryConfiguration().setPackageToScanEntity(packageToScanEntity);
+		return this;
+	}
+
 }
