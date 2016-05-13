@@ -89,7 +89,7 @@ public class AndroidSQLSession implements SQLSession {
 	private final TransactionFactory transactionFactory;
 	private int batchSize = 0;
 	private int currentBatchSize;
-	private boolean validationActive;
+	private Boolean validationActive=true;
 	private Map<String, NextValControl> cacheSequenceNumbers = new HashMap<String, NextValControl>();
 
 	public AndroidSQLSession(Context context, SQLSessionFactory sessionFactory, Connection connection,
