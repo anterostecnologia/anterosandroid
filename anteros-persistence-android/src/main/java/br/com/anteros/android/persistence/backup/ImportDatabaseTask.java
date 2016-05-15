@@ -32,6 +32,7 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.IOException;
 
+import br.com.anteros.android.core.util.AndroidFileUtils;
 import br.com.anteros.android.core.util.FileUtil;
 import br.com.anteros.persistence.session.SQLSession;
 
@@ -89,7 +90,7 @@ public class ImportDatabaseTask extends AsyncTask<Void, Void, String> {
 		}
 
 		try {
-			FileUtil.copyFile(dbBackupFile, dbFile);
+			AndroidFileUtils.copyFile(dbBackupFile, dbFile);
 			return "OK";
 		} catch (IOException e) {
 			e.printStackTrace();

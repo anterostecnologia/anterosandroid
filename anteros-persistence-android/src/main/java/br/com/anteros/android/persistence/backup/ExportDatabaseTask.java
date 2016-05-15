@@ -31,12 +31,13 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import br.com.anteros.android.core.util.AndroidFileUtils;
 import br.com.anteros.android.core.util.FileUtil;
 
 
 public class ExportDatabaseTask extends AsyncTask<Void, Void, String> {
 	private final static int maxBackupFiles = 12;
-	private static File ultimoBackup;
+	private static File lastBackup;
 	private ProgressDialog dialog;
 	private Context context;
 	private boolean runByService;
@@ -80,10 +81,10 @@ public class ExportDatabaseTask extends AsyncTask<Void, Void, String> {
 			deleteOldBackup(exportDir, dbFile.getName());
 		}
 
-		ultimoBackup = new File(exportDir, generateBackupName(dbFile));
+		lastBackup = new File(exportDir, generateBackupName(dbFile));
 		try {
-			ultimoBackup.createNewFile();
-			FileUtil.copyFile(dbFile, ultimoBackup);
+			lastBackup.createNewFile();
+			AndroidFileUtils.copyFile(dbFile, lastBackup);
 			SharedPreferences.Editor editor = preferences.edit();
 			editor.putLong(BackupService.DATE_TIME_LAST_BACKUP, new Date().getTime());
 			editor.commit();

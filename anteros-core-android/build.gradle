@@ -31,7 +31,7 @@ ext {
     siteUrl = 'http://www.anteros.com.br'
     gitUrl = 'https://github.com/anterostecnologia/anterosandroid.git'
 
-    libraryVersion = '1.0.2'
+    libraryVersion = '1.0.3'
 
     developerId = 'edson'
     developerName = 'Edson Martins'
@@ -49,8 +49,8 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 3
-        versionName "1.0.2"
+        versionCode 4
+        versionName "1.0.3"
     }
     buildTypes {
         release {
@@ -61,13 +61,14 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'br.com.anteros:Anteros-Core:1.0.0'
     compile 'br.com.anteros:Anteros-Persistence-Core:1.0.0'
+    compile 'com.google.code.gson:gson:2.6.2'
 }
 
 
 apply from : '../install.gradle'
-//apply from : '../bintray.gradle'
+apply from : '../bintray.gradle'

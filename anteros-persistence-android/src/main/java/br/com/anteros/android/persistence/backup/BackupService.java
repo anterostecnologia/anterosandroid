@@ -40,6 +40,7 @@ public class BackupService extends Service {
 	private static final int IDDLE_TIME = 5; // minutos
 	public static final String DATE_TIME_LAST_BACKUP = "DATE_TIME_LAST_BACKUP";
 	public static final String PREFERENCES_NAME = "Backup-Service";
+	public static final String PERSISTENCE_DATABASE_NAME = "br.com.anteros.android.persistence.DatabaseName";
 	private boolean serviceRunning = false;
 	private boolean screenOff = false;
 	private String databaseName = "";
@@ -63,7 +64,7 @@ public class BackupService extends Service {
 			stopSelf();
 			throw new BackupServiceException(e);
 		}
-		databaseName = (String)ai.metaData.get("DatabaseName");
+		databaseName = (String)ai.metaData.get(PERSISTENCE_DATABASE_NAME);
 		if (StringUtils.isEmpty(databaseName)){
 			throw new BackupServiceException("Não foi encontrado o nome do banco de dados para realizar o backup. Crie um metadata contendo o nome para 'DatabaseName' na sua aplicação.");
 		}

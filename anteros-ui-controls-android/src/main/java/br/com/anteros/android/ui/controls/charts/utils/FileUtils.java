@@ -40,7 +40,7 @@ import java.util.ArrayList;
  */
 public class FileUtils {
 
-    private static final String LOG = "MPChart-FileUtils";
+    private static final String LOG = "MPChart-AndroidFileUtils";
 
     /**
      * Loads a an Array of Entries from a textfile from the sd-card.

@@ -32,6 +32,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
+import br.com.anteros.android.core.util.AndroidFileUtils;
 import br.com.anteros.android.persistence.R;
 import br.com.anteros.android.persistence.sql.jdbc.SQLiteConnection;
 import br.com.anteros.android.core.util.FileUtil;
@@ -128,7 +129,7 @@ public abstract class AbstractSQLDatabaseBackupActivity extends Activity {
 
 			try {
 				file.createNewFile();
-				FileUtil.copyFile(dbFile, file);
+				AndroidFileUtils.copyFile(dbFile, file);
 				return true;
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -175,7 +176,7 @@ public abstract class AbstractSQLDatabaseBackupActivity extends Activity {
 
 			try {
 				dbFile.createNewFile();
-				FileUtil.copyFile(dbBackupFile, dbFile);
+				AndroidFileUtils.copyFile(dbBackupFile, dbFile);
 				connection.getDatabase().close();
 				return null;
 			} catch (IOException e) {
