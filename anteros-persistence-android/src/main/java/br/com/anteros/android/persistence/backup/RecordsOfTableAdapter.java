@@ -69,7 +69,11 @@ public class RecordsOfTableAdapter extends CursorAdapter {
                 if ((ex.getMessage() + "").contains("BLOB")) {
                     byte[] blob = cursor.getBlob(i);
                     ByteArrayInputStream bais = new ByteArrayInputStream(blob);
-                    bitmap = BitmapFactory.decodeStream(bais);
+                    try {
+                        bitmap = BitmapFactory.decodeStream(bais);
+                    } catch (Exception e){
+                        value = new String(blob);
+                    }
                 } else {
                     ex.printStackTrace();
                 }

@@ -31,7 +31,7 @@ ext {
     siteUrl = 'http://www.anteros.com.br'
     gitUrl = 'https://github.com/anterostecnologia/anterosandroid.git'
 
-    libraryVersion = '1.0.12'
+    libraryVersion = '1.0.13'
 
     developerId = 'edson'
     developerName = 'Edson Martins'
@@ -48,8 +48,8 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 13
-        versionName "1.0.12"
+        versionCode 14
+        versionName "1.0.13"
     }
     buildTypes {
         release {
@@ -70,4 +70,4 @@ dependencies {
 
 
 apply from : '../install.gradle'
-//apply from : '../bintray.gradle'
+apply from : '../bintray.gradle'
