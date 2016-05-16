@@ -86,7 +86,7 @@ public class RoundRectangleArea extends Area {
 		if (drawText) {
 			if (getName() != null) {
 				paint.setTextAlign(Paint.Align.CENTER);
-				paint.setTextSize(16);
+				paint.setTextSize(Area.TEXT_SIZE * (canvas.getDensity() / Area.DENSITY_ULTRA_LOW));
 				paint.setColor(Color.BLACK);
 				paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
 

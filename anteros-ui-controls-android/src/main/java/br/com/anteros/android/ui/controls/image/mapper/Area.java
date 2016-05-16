@@ -22,6 +22,9 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
 public abstract class Area {
+	public static final int TEXT_SIZE = 10;
+	public static final float DENSITY_ULTRA_LOW = 100f;
+
 	String _id;
 	String _name;
 	HashMap<String, String> _values;

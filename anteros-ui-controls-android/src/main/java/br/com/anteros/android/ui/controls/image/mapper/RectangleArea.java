@@ -84,7 +84,7 @@ public class RectangleArea extends Area {
 		if (drawText) {
 			if (getName() != null) {
 				paint.setTextAlign(Paint.Align.CENTER);
-				paint.setTextSize(16);
+				paint.setTextSize(Area.TEXT_SIZE * (canvas.getDensity() / Area.DENSITY_ULTRA_LOW));
 				paint.setColor(Color.BLACK);
 				paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
 
@@ -95,7 +95,7 @@ public class RectangleArea extends Area {
 				canvas.save();
 
 				float textYCoordinate = bounds.exactCenterY() - (sl.getHeight() / 2);
-				float textXCoordinate = (sl.getLineWidth(0) / 2); //- (sl.getLineWidth(0) / 8);
+				float textXCoordinate = (sl.getLineWidth(1) / 2);
 
 				canvas.translate(textXCoordinate, textYCoordinate);
 				sl.draw(canvas);

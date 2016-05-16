@@ -25,10 +25,12 @@ import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.Path;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
+import android.util.DisplayMetrics;
 
 public class PolygonArea extends Area {
 	List<IPoint> points = new ArrayList<IPoint>();
@@ -140,28 +142,27 @@ public class PolygonArea extends Area {
 
 		if (drawText) {
 			if (getName() != null) {
-				paint.setTextSize(16);
+				if (canvas.getDensity() > DisplayMetrics.DENSITY_DEFAULT)
+					paint.setTextSize(Area.TEXT_SIZE * (canvas.getDensity() / Area.DENSITY_ULTRA_LOW));
+
 				paint.setColor(Color.BLACK);
 				paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
 
-				if (points.length >= 4) {
-					Rect bounds = new Rect((int) points[0].x, (int) points[0].y, (int) points[2].x, (int) points[2].y);
-					TextPaint textPaint = new TextPaint(paint);
-					StaticLayout sl = new StaticLayout(getName(), textPaint, (int) bounds.width(),
-							Layout.Alignment.ALIGN_CENTER, 1, 1, true);
-					canvas.save();
+				Rect bounds = new Rect();
+				RectF rectF = new RectF();
+				polyPath.computeBounds(rectF, true);
+				rectF.round(bounds);
+				TextPaint textPaint = new TextPaint(paint);
+				StaticLayout sl = new StaticLayout(getName(), textPaint, (int) bounds.width(),
+						Layout.Alignment.ALIGN_CENTER, 1, 1, true);
+				canvas.save();
 
-					float textYCoordinate = bounds.exactCenterY() - (sl.getHeight() / 2);
-					float textXCoordinate = bounds.exactCenterX() - (sl.getWidth() / 2);
+				float textYCoordinate = bounds.exactCenterY() - (sl.getHeight() / 2);
+				float textXCoordinate = bounds.exactCenterX() - (sl.getWidth() / 2);
 
-					canvas.translate(textXCoordinate, textYCoordinate);
-					sl.draw(canvas);
-					canvas.restore();
-
-				} else {
-					canvas.drawText(getName(), (points[0].x + ((points[1].x - points[0].x) / 2)), (points[0].y
-							+ ((points[(len - 1)].y - points[0].y) / 2) + (paint.getTextSize() / 2)), paint);
-				}
+				canvas.translate(textXCoordinate, textYCoordinate);
+				sl.draw(canvas);
+				canvas.restore();
 			}
 		}
 
