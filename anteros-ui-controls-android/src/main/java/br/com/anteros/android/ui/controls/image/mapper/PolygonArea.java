@@ -142,8 +142,12 @@ public class PolygonArea extends Area {
 
 		if (drawText) {
 			if (getName() != null) {
-				if (canvas.getDensity() > DisplayMetrics.DENSITY_DEFAULT)
-					paint.setTextSize(Area.TEXT_SIZE * (canvas.getDensity() / Area.DENSITY_ULTRA_LOW));
+
+				int density = canvas.getDensity();
+				if (density > 0)
+					paint.setTextSize(Area.TEXT_SIZE * (density / Area.DENSITY_ULTRA_LOW));
+				else
+					paint.setTextSize(Area.TEXT_SIZE);
 
 				paint.setColor(Color.BLACK);
 				paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));

@@ -84,7 +84,13 @@ public class RectangleArea extends Area {
 		if (drawText) {
 			if (getName() != null) {
 				paint.setTextAlign(Paint.Align.CENTER);
-				paint.setTextSize(Area.TEXT_SIZE * (canvas.getDensity() / Area.DENSITY_ULTRA_LOW));
+
+				int density = canvas.getDensity();
+				if (density > 0)
+					paint.setTextSize(Area.TEXT_SIZE * (canvas.getDensity() / Area.DENSITY_ULTRA_LOW));
+				else
+					paint.setTextSize(Area.TEXT_SIZE);
+
 				paint.setColor(Color.BLACK);
 				paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
 

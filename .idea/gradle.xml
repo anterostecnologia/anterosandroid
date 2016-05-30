@@ -18,19 +18,6 @@
             <option value="$PROJECT_DIR$/anteros-ui-controls-android" />
           </set>
         </option>
-        <option name="myModules">
-          <set>
-            <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/anteros-core-android" />
-            <option value="$PROJECT_DIR$/anteros-hardware-android" />
-            <option value="$PROJECT_DIR$/anteros-installer-android" />
-            <option value="$PROJECT_DIR$/anteros-persistence-android" />
-            <option value="$PROJECT_DIR$/anteros-security-android" />
-            <option value="$PROJECT_DIR$/anteros-spring-android" />
-            <option value="$PROJECT_DIR$/anteros-synchronism-android" />
-            <option value="$PROJECT_DIR$/anteros-ui-controls-android" />
-          </set>
-        </option>
       </GradleProjectSettings>
     </option>
   </component>
