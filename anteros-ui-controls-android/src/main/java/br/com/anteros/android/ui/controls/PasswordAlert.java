@@ -21,63 +21,62 @@ import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 
 public class PasswordAlert extends CustomAlert {
 
-	private EditText edPassword;
-	private Button bOk;
-	private Button bCancel;
-	private OnPasswordListener passwordListener;
+    private EditText edPassword;
+    private OnPasswordListener passwordListener;
 
-	public PasswordAlert(Context context, String title, String message) {
-		super(context, title, message);
-		
-		ImageView imageView = (ImageView) findViewById(R.layout_alert.ic_alert);
-		imageView.setImageDrawable(context.getResources().getDrawable(R.drawable.alert_dialog_question));
-		imageView.setVisibility(View.VISIBLE);
 
-		edPassword = new EditText(context);
-		edPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-		LinearLayout contentLayout = (LinearLayout) findViewById(R.layout_alert.contentLayout);
-		contentLayout.addView(edPassword);
+    public PasswordAlert(Context context, String title, String message) {
+        super(context, title, message);
 
-		bOk = (Button) findViewById(R.layout_alert.buttonOK);
-		bOk.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				if (passwordListener != null)
-					passwordListener.OnPasswordOk(edPassword.getText()+"");
-			}
-		});
-		bOk.setVisibility(View.VISIBLE);
+        imgAlert.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_alert_dialog_password));
+        imgAlert.setVisibility(View.VISIBLE);
 
-		bCancel = (Button) findViewById(R.layout_alert.buttonCancel);
-		bCancel.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				if (passwordListener != null)
-					passwordListener.OnPasswordCancel();
-			}
-		});
-		bCancel.setVisibility(View.VISIBLE);
-		
-		setCancelable(false);
-		setCanceledOnTouchOutside(false);
-	}
+        edPassword = new EditText(context);
+        edPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        LinearLayout contentLayout = (LinearLayout) findViewById(R.id.alert_layout_layoutContent);
+        contentLayout.addView(edPassword);
 
-	public OnPasswordListener getOnPasswordListener() {
-		return passwordListener;
-	}
+        Button btnOk = (Button) findViewById(R.id.layout_alert_btnOk);
+        btnOk.setVisibility(View.VISIBLE);
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (passwordListener != null)
+                    passwordListener.OnPasswordOk(edPassword.getText() + "");
+            }
+        });
 
-	public void setOnPasswordListener(OnPasswordListener passwordListener) {
-		this.passwordListener = passwordListener;
-	}
+        Button btnCancel = (Button) findViewById(R.id.layout_alert_btnCancel);
+        btnCancel.setVisibility(View.VISIBLE);
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (passwordListener != null)
+                    passwordListener.OnPasswordCancel();
+                dismiss();
 
-	public interface OnPasswordListener {
-		void OnPasswordOk(String pass);
-		void OnPasswordCancel();
-	}
+            }
+        });
+
+        setCancelable(false);
+    }
+
+    public OnPasswordListener getOnPasswordListener() {
+        return passwordListener;
+    }
+
+    public void setOnPasswordListener(OnPasswordListener passwordListener) {
+        this.passwordListener = passwordListener;
+    }
+
+    public interface OnPasswordListener {
+        void OnPasswordOk(String pass);
+
+        void OnPasswordCancel();
+    }
 }

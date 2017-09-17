@@ -16,6 +16,10 @@
 
 package br.com.anteros.android.synchronism.communication.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.anteros.android.core.util.DeviceUtils;
 import br.com.anteros.android.synchronism.communication.SynchronismConfiguration;
 import br.com.anteros.android.synchronism.communication.SynchronismManager;
 import br.com.anteros.android.synchronism.communication.protocol.MobileAction;
@@ -25,7 +29,7 @@ import br.com.anteros.android.synchronism.listener.MobileProcessDataListener;
 import br.com.anteros.android.synchronism.listener.MobileSendDataListener;
 import br.com.anteros.android.synchronism.listener.SynchronismExportListener;
 import br.com.anteros.android.synchronism.listener.SynchronismImportListener;
-import br.com.anteros.android.core.util.DeviceUtils;
+import br.com.anteros.core.utils.ArrayUtils;
 
 public abstract class MobileService implements SynchronismExportListener,
 		SynchronismImportListener, MobileProcessDataListener,
@@ -169,20 +173,44 @@ public abstract class MobileService implements SynchronismExportListener,
 	}
 
 	public synchronized void executeAction(MobileAction mobileAction,
-			MobileServiceListener serviceListener) {
-		this.currentListener = serviceListener;
-		try {
-			MobileResponse response = manager.executeActionAndResponse(configurable.getApplicationName(),
-					new MobileAction[] { mobileAction });
-			if (currentListener != null) {
-				currentListener.onSuccess(response);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			if (currentListener != null)
-				this.currentListener.onFailure(e.getMessage());
-		}
-	}
+                                           MobileServiceListener serviceListener) {
+        executeActions(new MobileAction[]{mobileAction}, 0, serviceListener);
+    }
+
+    public synchronized void executeActions(MobileAction[] mobileActions,
+                                            MobileServiceListener serviceListener) {
+        executeActions(mobileActions, 0, serviceListener);
+    }
+
+    public synchronized void executeActions(MobileAction[] mobileActions, int limit,
+                                            MobileServiceListener serviceListener) {
+        int count;
+        List<MobileAction> actionsToSend = new ArrayList<>();
+        List<MobileAction> actionsTemp = ArrayUtils.asList(mobileActions);
+        this.currentListener = serviceListener;
+        try {
+            MobileResponse response = null;
+            while (!actionsTemp.isEmpty()) {
+                count = 0;
+                while ((count < limit || limit == 0) && (!actionsTemp.isEmpty())) {
+                    actionsToSend.add(actionsTemp.get(0));
+                    actionsTemp.remove(0);
+                    count++;
+                }
+
+                response = manager.executeActionAndResponse(configurable.getApplicationName(),
+                        (actionsTemp.isEmpty() ? MobileRequest.ACTION_EXECUTE_QUEUE : MobileRequest.ACTION_QUEUE),
+                        actionsToSend.toArray(new MobileAction[]{}));
+            }
+            if (currentListener != null) {
+                currentListener.onSuccess(response);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (currentListener != null)
+                this.currentListener.onFailure(e.getMessage());
+        }
+    }
 
 	public void interrupt() {
 		manager.stop();

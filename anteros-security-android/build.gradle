@@ -31,7 +31,7 @@ ext {
     siteUrl = 'http://www.anteros.com.br'
     gitUrl = 'https://github.com/anterostecnologia/anterosandroid.git'
 
-    libraryVersion = '1.0.1'
+    libraryVersion = '1.0.2'
 
     developerId = 'edson'
     developerName = 'Edson Martins'
@@ -49,8 +49,8 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 2
-        versionName "1.0.1"
+        versionCode 3
+        versionName "1.0.2"
     }
     buildTypes {
         release {
@@ -63,9 +63,9 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.3.0'
-    compile 'br.com.anteros:Anteros-Core:1.0.0'
-    compile 'br.com.anteros:Anteros-Security:1.0.1'
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'br.com.anteros:Anteros-Core:1.0.+'
+    compile 'br.com.anteros:Anteros-Security:1.0.+'
 }
 
 

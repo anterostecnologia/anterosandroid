@@ -19,42 +19,34 @@ package br.com.anteros.android.ui.controls;
 import android.content.Context;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 
 
-public class WarningAlert extends CustomAlert implements View.OnClickListener {
+public class WarningAlert extends CustomAlert {
 
-	protected ImageView imageView;
-	public String okText = "OK";
-	private WarningListener listener;
-	private Button btnOK;
 
-	public WarningAlert(Context context, String title, String message) {
-		this(context, title, message, null);
-	}
+    public WarningAlert(Context context, String title, String message) {
+        this(context, title, message, null);
+    }
 
-	public WarningAlert(Context context, String title, String message, WarningListener listener) {
-		super(context, title, message);
+    public WarningAlert(Context context, String title, String message, final WarningListener listener) {
+        super(context, title, message);
 
-		this.listener = listener;
+        imgAlert.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_alert_dialog_warning));
+        imgAlert.setVisibility(View.VISIBLE);
 
-		imageView = (ImageView) findViewById(R.layout_alert.ic_alert);
-		imageView.setImageDrawable(context.getResources().getDrawable(R.drawable.alert_dialog_warning));
-		imageView.setVisibility(View.VISIBLE);
+        Button btnOk = (Button) findViewById(R.id.layout_alert_btnOk);
+        btnOk.setVisibility(View.VISIBLE);
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null)
+                    listener.onOkClick();
+                dismiss();
+            }
+        });
+    }
 
-		btnOK = (Button) findViewById(R.layout_alert.btnSim);
-		btnOK.setText(okText);
-		btnOK.setOnClickListener(this);
-		btnOK.setVisibility(View.VISIBLE);
-	}
-
-	public void onClick(View view) {
-		dismiss();
-		if (listener != null)
-			listener.onOkClick();
-	}
-
-	public interface WarningListener {
-		void onOkClick();
-	}
+    public interface WarningListener {
+        void onOkClick();
+    }
 }

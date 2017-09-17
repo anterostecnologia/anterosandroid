@@ -24,27 +24,34 @@ import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import br.com.anteros.android.core.communication.http.types.HttpMethod;
+import br.com.anteros.android.core.communication.http.types.MediaType;
+import br.com.anteros.persistence.sql.command.RuntimeSqlException;
+
 /**
- * Created by edson on 03/05/16.
+ * @author Edson Martins     (edsonmartions2005@gmail.com)
+ *         Eduardo Albertini (albertinieduardo@hotmail.com)
+ *         Data: 03/05/16.
  */
 public class HttpHelper {
 
-    public static String CONTENT_TYPE_FORM = "application/x-www-form-urlencoded";
-    public static String CONTENT_TYPE_JSON = "application/json";
-    public static String GET = "GET";
-    public static String POST = "POST";
-
-    public static String getJSON(String url, String data, int timeout, String method, String contentType) throws Exception {
+    public static String getJSON(String url, String data, int timeout, HttpMethod method, MediaType mediaType, Authentication authentication) throws Exception {
         HttpURLConnection connection = null;
         try {
 
             URL u = new URL(url);
             connection = (HttpURLConnection) u.openConnection();
-            connection.setRequestMethod(method);
+
+
+            if (authentication != null) {
+                connection.setRequestProperty("Authorization", authentication.getBasicAuthenticatorCredentials());
+            }
+
+            connection.setRequestMethod(method.value());
 
             //set the sending type and receiving type to json
-            connection.setRequestProperty("Content-Type", contentType);
-            connection.setRequestProperty("Accept", CONTENT_TYPE_JSON);
+            connection.setRequestProperty("Content-Type", mediaType.value());
+            connection.setRequestProperty("Accept", MediaType.APPLICATION_JSON.value());
 
             connection.setAllowUserInteraction(false);
             connection.setConnectTimeout(timeout);
@@ -67,7 +74,7 @@ public class HttpHelper {
             connection.connect();
 
             int status = connection.getResponseCode();
-            Logger.getLogger(HttpHelper.class.getName()).log(Level.INFO,"HTTP Client", "HTTP status code : " + status);
+            Logger.getLogger(HttpHelper.class.getName()).log(Level.INFO, "HTTP Client", "HTTP status code : " + status);
             switch (status) {
                 case 200:
                 case 201:
@@ -75,24 +82,27 @@ public class HttpHelper {
                     StringBuilder sb = new StringBuilder();
                     String line;
                     while ((line = bufferedReader.readLine()) != null) {
-                        sb.append(line + "\n");
+                        sb.append(line).append("\n");
                     }
                     bufferedReader.close();
-                    Logger.getLogger(HttpHelper.class.getName()).log(Level.INFO,"HTTP Client", "Received String : " + sb.toString());
+                    Logger.getLogger(HttpHelper.class.getName()).log(Level.INFO, "HTTP Client", "Received String : " + sb.toString());
                     //return received string
                     return sb.toString();
-                case 401:
-                    throw new RuntimeException("Aplicação não autorizada. Retornou erro 401. Verifique com o responsável pela aplicação.");
+                default:
+                    throw new RuntimeException("Ocorreu um problema com a requisição. Status code: " + status, new RuntimeSqlException(connection.getResponseMessage()));
             }
         } finally {
             if (connection != null) {
                 try {
                     connection.disconnect();
                 } catch (Exception ex) {
-                    Logger.getLogger(HttpHelper.class.getName()).log(Level.SEVERE,"HTTP Client", "Error in http connection" + ex.toString());
+                    Logger.getLogger(HttpHelper.class.getName()).log(Level.SEVERE, "HTTP Client", "Error in http connection" + ex.toString());
                 }
             }
         }
-        return null;
+    }
+
+    public static String getJSON(String url, String data, int timeout, HttpMethod method, MediaType mediaType) throws Exception {
+        return getJSON(url, data, timeout, method, mediaType, null);
     }
 }

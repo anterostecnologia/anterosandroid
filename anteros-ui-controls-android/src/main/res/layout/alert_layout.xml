@@ -15,94 +15,94 @@
   ~ limitations under the License.
   -->
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+layout_alert/linearLayout1"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical" >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="6dp"
+    android:orientation="vertical">
 
-    <RelativeLayout
-        android:id="@+layout_alert/relativeLayout1"
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true" >
+        android:orientation="horizontal">
 
         <LinearLayout
-            android:id="@+layout_alert/linearLayout1"
+            android:id="@+id/alert_layout_layoutImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_centerVertical="true"
             android:orientation="vertical" >
 
             <ImageView
-                android:id="@+layout_alert/ic_alert"
+                android:id="@+id/alert_layout_imageAlert"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/alert_dialog_error" />
+                android:padding="3dp"
+                android:src="@drawable/ic_alert_dialog_error" />
          
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+layout_alert/contentLayout"
-            android:layout_width="fill_parent"
+            android:id="@+id/alert_layout_layoutContent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+layout_alert/linearLayout1"
+            android:layout_gravity="center"
             android:orientation="vertical" >
 
             <TextView
-                android:id="@+layout_alert/textView"
+                android:id="@+id/alert_layout_tvMensagem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12px"
-                android:text="TextView"
-                android:textSize="17sp"
-                android:textStyle="bold" />
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:gravity="center_vertical"
+                android:maxLines="15"
+                android:text="MENSAGEM...MENSAGEM...MENSAGEM...MENSAGEM..."
+                android:textSize="17sp" />
 
         </LinearLayout>
-    </RelativeLayout>
-
+    </LinearLayout>
     <LinearLayout
-        android:id="@+layout_alert/linearLayout2"
-        android:layout_width="fill_parent"
+        android:id="@+id/layout_alert_layoutBotoes"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+layout_alert/relativeLayout1"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <Button
-            android:id="@+layout_alert/btnSim"
-            android:layout_width="fill_parent"
+            android:id="@+id/layout_alert_btnYes"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="SIM"
             android:visibility="gone" />
 
         <Button
-            android:id="@+layout_alert/buttonOK"
-            android:layout_width="fill_parent"
+            android:id="@+id/layout_alert_btnOk"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="OK"
             android:visibility="gone" />
 
         <Button
-            android:id="@+layout_alert/btnNao"
-            android:layout_width="fill_parent"
+            android:id="@+id/layout_alert_btnNo"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="NÃO"
             android:visibility="gone" />
 
         <Button
-            android:id="@+layout_alert/buttonCancel"
-            android:layout_width="fill_parent"
+            android:id="@+id/layout_alert_btnCancel"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Cancelar"
+            android:text="CANCELAR"
             android:visibility="gone" />
 
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

@@ -14,4 +14,4 @@
  * limitations under the License.
  */
 
-include ':anteros-core-android', ':anteros-persistence-android', ':anteros-security-android', ':anteros-spring-android', ':anteros-synchronism-android', ':anteros-ui-controls-android', ':anteros-hardware-android', ':anteros-installer-android'
+include ':anteros-core-android', ':anteros-persistence-android', ':anteros-security-android', ':anteros-spring-android', ':anteros-synchronism-android', ':anteros-ui-controls-android', ':anteros-hardware-android', ':anteros-installer-android', ':myapplication'

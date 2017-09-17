@@ -18,20 +18,34 @@ package br.com.anteros.android.ui.controls;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.view.Window;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import br.com.anteros.core.utils.StringUtils;
 
 
 public abstract class CustomAlert extends Dialog {
 
-	protected TextView textView;
+    protected TextView tvmensagem;
+    protected ImageView imgAlert;
 
-	public CustomAlert(Context context, String title, String message) {
-		super(context);
-		setContentView(R.layout.alert_layout); 
-		setTitle(title);
+    public CustomAlert(Context context, String title, String message) {
+        super(context);
+        setCancelable(false);
 
-		textView = (TextView) findViewById(R.layout_alert.textView);
-		textView.setText(message);
-	}
+
+        if (StringUtils.isBlank(title))
+            requestWindowFeature(Window.FEATURE_NO_TITLE);
+        else
+            setTitle(title);
+
+        setContentView(R.layout.alert_layout);
+
+        tvmensagem = (TextView) findViewById(R.id.alert_layout_tvMensagem);
+        tvmensagem.setText(message);
+
+        imgAlert = (ImageView) findViewById(R.id.alert_layout_imageAlert);
+    }
 
 }

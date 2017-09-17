@@ -16,9 +16,6 @@
 
 package br.com.anteros.android.ui.controls.image.mapper;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -30,7 +27,9 @@ import android.graphics.Typeface;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
-import android.util.DisplayMetrics;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PolygonArea extends Area {
 	List<IPoint> points = new ArrayList<IPoint>();
@@ -145,9 +144,9 @@ public class PolygonArea extends Area {
 
 				int density = canvas.getDensity();
 				if (density > 0)
-					paint.setTextSize(Area.TEXT_SIZE * (density / Area.DENSITY_ULTRA_LOW));
+					paint.setTextSize(getTextSize() * (density / Area.DENSITY_ULTRA_LOW));
 				else
-					paint.setTextSize(Area.TEXT_SIZE);
+					paint.setTextSize(getTextSize());
 
 				paint.setColor(Color.BLACK);
 				paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));

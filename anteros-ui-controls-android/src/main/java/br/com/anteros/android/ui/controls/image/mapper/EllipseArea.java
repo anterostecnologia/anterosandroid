@@ -16,8 +16,6 @@
 
 package br.com.anteros.android.ui.controls.image.mapper;
 
-import java.util.List;
-
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -28,6 +26,8 @@ import android.graphics.Typeface;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
+
+import java.util.List;
 
 public class EllipseArea extends Area {
 	float _left;
@@ -89,9 +89,9 @@ public class EllipseArea extends Area {
 
 				int density = canvas.getDensity();
 				if (density > 0)
-					paint.setTextSize(Area.TEXT_SIZE * (density / Area.DENSITY_ULTRA_LOW));
+					paint.setTextSize(getTextSize() * (density / Area.DENSITY_ULTRA_LOW));
 				else
-					paint.setTextSize(Area.TEXT_SIZE);
+					paint.setTextSize(getTextSize());
 
 				paint.setColor(Color.BLACK);
 				paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));

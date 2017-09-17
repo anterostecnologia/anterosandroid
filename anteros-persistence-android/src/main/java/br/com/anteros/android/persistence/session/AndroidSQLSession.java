@@ -16,6 +16,8 @@
 
 package br.com.anteros.android.persistence.session;
 
+import android.content.Context;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Savepoint;
@@ -27,7 +29,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import android.content.Context;
 import br.com.anteros.android.persistence.sql.jdbc.SQLiteConnection;
 import br.com.anteros.core.utils.ReflectionUtils;
 import br.com.anteros.persistence.handler.EntityHandler;
@@ -68,25 +69,25 @@ import br.com.anteros.persistence.transaction.TransactionFactory;
 
 public class AndroidSQLSession implements SQLSession {
 
+	public static int FIRST_RECORD = 0;
+	public final int DEFAULT_CACHE_SIZE = 200;
+	private final TransactionFactory transactionFactory;
 	private EntityCacheManager entityCacheManager;
 	private DatabaseDialect dialect;
 	private ShowSQLType[] showSql = { ShowSQLType.NONE };
 	private boolean formatSql;
 	private SQLSessionFactory sessionFactory;
 	private SQLPersister persister;
-	public final int DEFAULT_CACHE_SIZE = 200;
 	private SQLPersistenceContext persistenceContext;
 	private List<CommandSQL> commandQueue = new ArrayList<CommandSQL>();
 	private Map<Object, Map<DescriptionColumn, IdentifierPostInsert>> cacheIdentifier = new LinkedHashMap<Object, Map<DescriptionColumn, IdentifierPostInsert>>();
 	private Context context;
 	private Transaction transaction;
 	private List<SQLSessionListener> listeners = new ArrayList<SQLSessionListener>();
-	public static int FIRST_RECORD = 0;
 	private String clientId;
 	private Connection connection;
 	private AbstractSQLRunner queryRunner;
 	private LazyLoadFactory lazyLoadFactory = new SimpleLazyLoadFactory();
-	private final TransactionFactory transactionFactory;
 	private int batchSize = 0;
 	private int currentBatchSize;
 	private Boolean validationActive=true;
@@ -112,14 +113,6 @@ public class AndroidSQLSession implements SQLSession {
 		this.context = context;
 	}
 
-	public void setEntityCacheManager(EntityCacheManager entityCacheManager) {
-		this.entityCacheManager = entityCacheManager;
-	}
-
-	public void setPersistenceContext(SQLPersistenceContext persistenceContext) {
-		this.persistenceContext = persistenceContext;
-	}
-
 	public <T> Identifier<T> getIdentifier(T owner) throws Exception {
 		return Identifier.create(this, owner);
 	}
@@ -137,6 +130,12 @@ public class AndroidSQLSession implements SQLSession {
 	@Override
 	public void save(Object[] object) throws Exception {
 		for (Object obj : object)
+			persister.save(this, obj);
+	}
+
+	@Override
+	public void save(Collection<?> collection) throws Exception {
+		for (Object obj : collection)
 			persister.save(this, obj);
 	}
 
@@ -237,6 +236,10 @@ public class AndroidSQLSession implements SQLSession {
 		return entityCacheManager;
 	}
 
+	public void setEntityCacheManager(EntityCacheManager entityCacheManager) {
+		this.entityCacheManager = entityCacheManager;
+	}
+
 	@Override
 	public DatabaseDialect getDialect() {
 		return dialect;
@@ -255,6 +258,10 @@ public class AndroidSQLSession implements SQLSession {
 	@Override
 	public SQLPersistenceContext getPersistenceContext() {
 		return persistenceContext;
+	}
+
+	public void setPersistenceContext(SQLPersistenceContext persistenceContext) {
+		this.persistenceContext = persistenceContext;
 	}
 
 	@Override
@@ -284,17 +291,6 @@ public class AndroidSQLSession implements SQLSession {
 	}
 
 	@Override
-	public void setFormatSql(boolean sql) {
-		this.formatSql = sql;
-
-	}
-
-	@Override
-	public void setShowSql(ShowSQLType... showSql) {
-		this.showSql = showSql;
-	}
-
-	@Override
 	public boolean isShowSql() {
 		return showSql != null;
 	}
@@ -312,6 +308,12 @@ public class AndroidSQLSession implements SQLSession {
 	@Override
 	public boolean isFormatSql() {
 		return formatSql;
+	}
+
+	@Override
+	public void setFormatSql(boolean sql) {
+		this.formatSql = sql;
+
 	}
 
 	@Override
@@ -428,12 +430,12 @@ public class AndroidSQLSession implements SQLSession {
 	}
 
 	@Override
-	public void setClientInfo(String clientInfo) throws SQLException {
+	public String getClientInfo() throws SQLException {
+		return "";
 	}
 
 	@Override
-	public String getClientInfo() throws SQLException {
-		return "";
+	public void setClientInfo(String clientInfo) throws SQLException {
 	}
 
 	@Override
@@ -828,26 +830,6 @@ public class AndroidSQLSession implements SQLSession {
 		return (cacheSequenceNumbers.get(sequenceName).getNextVal());
 	}
 
-	private class NextValControl {
-
-		private Long lastValue;
-		private Long value;
-
-		public NextValControl(Long firstValue, Long lastValue) {
-			this.lastValue = lastValue;
-			this.value = firstValue;
-		}
-
-		public boolean hasNextVal() {
-			return (value + 1 <= lastValue);
-		}
-
-		public Long getNextVal() {
-			value++;
-			return value;
-		}
-	}
-
 	@Override
 	public void forceGenerationIdentifier(Object entity) throws Exception {
 		if (entity == null)
@@ -880,5 +862,30 @@ public class AndroidSQLSession implements SQLSession {
 	@Override
 	public ShowSQLType[] getShowSql() {
 		return showSql;
+	}
+
+	@Override
+	public void setShowSql(ShowSQLType... showSql) {
+		this.showSql = showSql;
+	}
+
+	private class NextValControl {
+
+		private Long lastValue;
+		private Long value;
+
+		public NextValControl(Long firstValue, Long lastValue) {
+			this.lastValue = lastValue;
+			this.value = firstValue;
+		}
+
+		public boolean hasNextVal() {
+			return (value + 1 <= lastValue);
+		}
+
+		public Long getNextVal() {
+			value++;
+			return value;
+		}
 	}
 }

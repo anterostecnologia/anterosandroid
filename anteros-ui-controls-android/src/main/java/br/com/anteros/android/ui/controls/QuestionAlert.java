@@ -19,52 +19,44 @@ package br.com.anteros.android.ui.controls;
 import android.content.Context;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 
 
-public class QuestionAlert extends CustomAlert implements View.OnClickListener {
+public class QuestionAlert extends CustomAlert {
 
-	private ImageView imageView;
-	private Button btnPositive;
-	private Button btnNegative;
-	public String postitiveText = "Sim";
-	public String negativeText = "Não";
-	private QuestionListener listener;
+    public QuestionAlert(Context context, String title, String message, final QuestionListener listener) {
+        super(context, title, message);
 
-	public QuestionAlert(Context context, String title, String message, QuestionListener listener) {
-		super(context, title, message);
+        imgAlert.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_alert_dialog_question));
+        imgAlert.setVisibility(View.VISIBLE);
 
-		this.listener = listener;
+        Button btnYes = (Button) findViewById(R.id.layout_alert_btnYes);
+        btnYes.setVisibility(View.VISIBLE);
+        btnYes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null)
+                    listener.onPositiveClick();
+                dismiss();
+            }
+        });
 
-		imageView = (ImageView) findViewById(R.layout_alert.ic_alert);
-		imageView.setImageDrawable(context.getResources().getDrawable(R.drawable.alert_dialog_question));
-		imageView.setVisibility(View.VISIBLE);
+        Button btnNo = (Button) findViewById(R.id.layout_alert_btnNo);
+        btnNo.setVisibility(View.VISIBLE);
+        btnNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null)
+                    listener.onNegativeClick();
+                dismiss();
+            }
+        });
+    }
 
-		btnPositive = (Button) findViewById(R.layout_alert.btnSim);
-		btnPositive.setText(postitiveText);
-		btnPositive.setOnClickListener(this);
-		btnPositive.setVisibility(View.VISIBLE);
 
-		btnNegative = (Button) findViewById(R.layout_alert.btnNao);
-		btnNegative.setText(negativeText);
-		btnNegative.setOnClickListener(this);
-		btnNegative.setVisibility(View.VISIBLE);
-	}
+    public interface QuestionListener {
+        void onPositiveClick();
 
-	public void onClick(View view) {
-		if (view == btnNegative) {
-			listener.onNegativeClick();
-			dismiss();
-		} else if (view == btnPositive) {
-			listener.onPositiveClick();
-			dismiss();
-		}
-	}
-
-	public interface QuestionListener {
-		void onPositiveClick();
-
-		void onNegativeClick();
-	}
+        void onNegativeClick();
+    }
 
 }

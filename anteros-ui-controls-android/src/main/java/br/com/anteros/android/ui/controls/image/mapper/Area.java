@@ -16,18 +16,19 @@
 
 package br.com.anteros.android.ui.controls.image.mapper;
 
-import java.util.HashMap;
-
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
+import java.util.HashMap;
+
 public abstract class Area {
-	public static final int TEXT_SIZE = 16;
-	public static final float DENSITY_ULTRA_LOW = 100f;
+    //public static final int TEXT_SIZE = 20;
+    public static final float DENSITY_ULTRA_LOW = 100f;
 
 	String _id;
 	String _name;
-	HashMap<String, String> _values;
+    int _textSize = 18;
+    HashMap<String, String> _values;
 	Bitmap _decoration = null;
 
 	public Area(String id, String name) {
@@ -44,6 +45,10 @@ public abstract class Area {
 	public String getName() {
 		return _name;
 	}
+
+    public void setName(String name) {
+        this._name = name;
+    }
 
 	public void addValue(String key, String value) {
 		if (_values == null) {
@@ -72,8 +77,8 @@ public abstract class Area {
 
 	public abstract void draw(Canvas canvas, int alfa, int r, int g, int b, boolean drawText);
 
-	public abstract void applyScale(float scaleWidth, float scaleHeight);
-	
+    public abstract void applyScale(float scaleWidth, float scaleHeight);
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -99,7 +104,11 @@ public abstract class Area {
 		return true;
 	}
 
-	public void setName(String name) {
-		this._name = name;
-	}
+    public int getTextSize() {
+        return _textSize;
+    }
+
+    public void setTextSize(int _textSize) {
+        this._textSize = _textSize;
+    }
 }

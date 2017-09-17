@@ -21,17 +21,17 @@ import android.content.Context;
 
 public class ErrorAlert extends InfoAlert {
 
-	public ErrorAlert(Context context, String title, String message, ErrorListener listener) {
-		super(context, title, message, listener);
-		imageView.setImageDrawable(context.getResources().getDrawable(R.drawable.alert_dialog_error));
-	}
+    public ErrorAlert(Context context, String title, String message, ErrorListener listener) {
+        super(context, title, message, listener);
+        imgAlert.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_alert_dialog_error));
 
-	public ErrorAlert(Context context, String title, String message) {
-		super(context, title, message);
-		imageView.setImageDrawable(context.getResources().getDrawable(R.drawable.alert_dialog_error));
-	}
+    }
 
-	public interface ErrorListener extends InfoListener { 
-  
-	}
+    public ErrorAlert(Context context, String title, String message) {
+        this(context, title, message, null);
+    }
+
+    public interface ErrorListener extends InfoListener {
+
+    }
 }

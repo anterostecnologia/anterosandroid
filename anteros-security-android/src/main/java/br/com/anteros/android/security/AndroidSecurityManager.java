@@ -17,7 +17,6 @@
 package br.com.anteros.android.security;
 
 import java.lang.reflect.Method;
-import java.util.List;
 
 import br.com.anteros.android.security.annotation.ActionSecured;
 import br.com.anteros.android.security.annotation.ResourceSecured;
@@ -141,8 +140,8 @@ public class AndroidSecurityManager {
 							}
 
 							if (!found) {
-								if (act.getVersao().compareTo(version) <= 0) {
-									delegator.removeActionByAllUsers(act);
+                                if (act.getVersao().compareTo(version) < 0) {
+                                    delegator.removeActionByAllUsers(act);
 								}
 							}
 						}

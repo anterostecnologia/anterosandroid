@@ -21,6 +21,8 @@ import android.os.AsyncTask;
 import com.google.gson.Gson;
 
 import br.com.anteros.android.core.communication.http.HttpHelper;
+import br.com.anteros.android.core.communication.http.types.HttpMethod;
+import br.com.anteros.android.core.communication.http.types.MediaType;
 
 /**
  * Created by edson on 12/05/16.
@@ -31,7 +33,7 @@ public class PostmonWebService extends AsyncTask<String,String,PostmonResponse> 
     protected PostmonResponse doInBackground(String... params) {
         PostmonResponse result = null;
         try {
-            String response = HttpHelper.getJSON("http://api.postmon.com.br/v1/cep/" + params[0], null, 10000, HttpHelper.GET, HttpHelper.CONTENT_TYPE_JSON);
+            String response = HttpHelper.getJSON("http://api.postmon.com.br/v1/cep/" + params[0], null, 10000, HttpMethod.GET, MediaType.APPLICATION_JSON);
             if (response!=null){
                 result = new Gson().fromJson(response, PostmonResponse.class);
             }
