@@ -21,4 +21,18 @@
     <string name="btn_check_new_version">Install or Update</string>
     <string name="btn_close">Close</string>
 
+
+
+    <string name="crop_image_activity_title"></string>
+    <string name="crop_image_menu_rotate_left">Rotacionar sentido horário</string>
+    <string name="crop_image_menu_rotate_right">Rotacionar</string>
+    <string name="crop_image_menu_crop">Cortar</string>
+    <string name="crop_image_menu_flip">Girar</string>
+    <string name="crop_image_menu_flip_horizontally">Girar horizontal</string>
+    <string name="crop_image_menu_flip_vertically">Girar vertical</string>
+
+    <string name="pick_image_intent_chooser_title">Seleciona a origem</string>
+
+    <string name="crop_image_activity_no_permissions">Cancelando, sem permissão</string>
+
 </resources>

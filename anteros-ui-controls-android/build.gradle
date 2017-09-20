@@ -31,7 +31,7 @@ ext {
     siteUrl = 'http://www.anteros.com.br'
     gitUrl = 'https://github.com/anterostecnologia/anterosandroid.git'
 
-    libraryVersion = '1.0.15'
+    libraryVersion = '1.0.20'
 
     developerId = 'edson'
     developerName = 'Edson Martins'
@@ -50,8 +50,8 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 21
-        versionCode 16
-        versionName "1.0.15"
+        versionCode 20
+        versionName "1.0.20"
     }
     buildTypes {
         release {
@@ -65,6 +65,7 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:support-v4:23.4.0'
     compile 'br.com.anteros:Anteros-Core:1.0.7'
     compile project(':anteros-core-android')
     compile 'com.google.android.gms:play-services-maps:8.4.0'
